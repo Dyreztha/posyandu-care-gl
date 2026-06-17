@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { PageHeader } from "@/components/page-header"
-import { kegiatanKader } from "@/lib/data"
+import { dataKegiatan } from "@/lib/data"
 import { Search, Plus, CalendarDays } from "lucide-react"
 
 const months = [
@@ -26,11 +26,11 @@ export default function KegiatanPage() {
   const [query, setQuery] = useState("")
   const [month, setMonth] = useState("Semua Bulan")
 
-  const filtered = kegiatanKader.filter((k) => {
+  const filtered = dataKegiatan.filter((k) => {
     const matchQuery =
-      k.nama.toLowerCase().includes(query.toLowerCase()) ||
-      k.kegiatan.toLowerCase().includes(query.toLowerCase())
-    const matchMonth = month === "Semua Bulan" || k.bulan === month
+      k.namaKegiatan.toLowerCase().includes(query.toLowerCase()) ||
+      k.kaderBertugas.toLowerCase().includes(query.toLowerCase())
+    const matchMonth = month === "Semua Bulan" || k.tanggal.includes(month)
     return matchQuery && matchMonth
   })
 
@@ -45,7 +45,7 @@ export default function KegiatanPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Cari nama kader atau kegiatan..."
+              placeholder="Cari kegiatan atau kader..."
               className="w-full rounded-full border-2 border-border bg-card py-2.5 pl-10 pr-4 text-sm outline-none focus:border-primary"
             />
           </div>
@@ -73,14 +73,14 @@ export default function KegiatanPage() {
 
       <div className="mt-6 overflow-hidden rounded-3xl border-2 border-border bg-card shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[640px] text-left text-sm">
+          <table className="w-full min-w-[720px] text-left text-sm">
             <thead>
               <tr className="bg-secondary/60 text-xs uppercase tracking-wide text-muted-foreground">
                 <th className="px-4 py-3 font-bold">No</th>
                 <th className="px-4 py-3 font-bold">Tanggal</th>
-                <th className="px-4 py-3 font-bold">Nama Kader</th>
-                <th className="px-4 py-3 font-bold">Kegiatan</th>
-                <th className="px-4 py-3 font-bold">Lokasi</th>
+                <th className="px-4 py-3 font-bold">Nama Kegiatan</th>
+                <th className="px-4 py-3 font-bold">Kader Bertugas</th>
+                <th className="px-4 py-3 font-bold">Peserta</th>
                 <th className="px-4 py-3 font-bold">Status</th>
               </tr>
             </thead>
@@ -89,14 +89,14 @@ export default function KegiatanPage() {
                 <tr key={k.id} className="border-t border-border/70 transition hover:bg-secondary/30">
                   <td className="px-4 py-3 text-muted-foreground">{i + 1}</td>
                   <td className="px-4 py-3 font-medium">{k.tanggal}</td>
-                  <td className="px-4 py-3">{k.nama}</td>
-                  <td className="px-4 py-3">{k.kegiatan}</td>
-                  <td className="px-4 py-3 text-muted-foreground">{k.lokasi}</td>
+                  <td className="px-4 py-3">{k.namaKegiatan}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{k.kaderBertugas}</td>
+                  <td className="px-4 py-3">{k.jumlahPeserta}</td>
                   <td className="px-4 py-3">
                     <span
                       className={
                         "inline-flex rounded-full px-3 py-1 text-xs font-bold " +
-                        (k.status === "Selesai"
+                        (k.status === "SUCCESS"
                           ? "bg-emerald-100 text-emerald-700"
                           : "bg-amber-100 text-amber-700")
                       }
