@@ -16,18 +16,18 @@ function StarInput({
 }) {
   return (
     <div className="space-y-2">
-      <label className="block font-display text-lg font-semibold text-primary">
+      <label className="block font-display text-lg font-semibold text-purple-800">
         {label}
       </label>
-      <div className="flex items-center gap-2 rounded-full bg-accent/60 px-3 py-2.5 shadow-inner ring-1 ring-accent">
+      <div className="flex items-center gap-2 rounded-full bg-yellow-100 px-4 py-3 shadow-sm ring-1 ring-yellow-200">
         <Star
-          className="h-6 w-6 shrink-0 fill-primary text-primary"
+          className="h-6 w-6 shrink-0 fill-yellow-400 text-yellow-400"
           aria-hidden="true"
         />
         <input
           type={type}
           placeholder={placeholder}
-          className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+          className="w-full bg-transparent text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none"
         />
       </div>
     </div>
@@ -46,35 +46,34 @@ export default function LoginPage() {
     <AuthLayout>
       <form
         onSubmit={handleSubmit}
-        className="card-fun w-full max-w-sm rounded-[2rem] border-2 border-accent bg-card/95 px-7 py-8 shadow-xl"
+        className="w-full max-w-md rounded-3xl border-4 border-yellow-300 bg-white px-8 py-10 shadow-2xl"
       >
-        <h1 className="text-center font-display text-3xl font-bold text-primary">
+        <h1 className="text-center font-display text-3xl font-bold text-purple-800">
           Selamat Datang
         </h1>
-        <p className="mt-4 text-center text-sm font-bold text-primary/80">
+        <p className="mt-3 text-center text-sm font-semibold text-purple-700">
           Monitoring Kesehatan Anak
         </p>
-        <p className="mb-6 text-center text-sm text-muted-foreground">
+        <p className="mb-6 text-center text-xs text-gray-600">
           Silahkan masuk untuk melanjutkan
         </p>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           <StarInput label="Username" placeholder="Masukkan username" />
           <StarInput label="Password" placeholder="Masukkan password" type="password" />
         </div>
 
-        <p className="mt-5 text-center text-xs text-foreground">
+        <p className="mt-6 text-center text-xs text-gray-700">
           Belum punya akun?{" "}
-          <Link href="/register" className="font-bold text-primary underline">
+          <Link href="/register" className="font-bold text-purple-800 underline hover:text-purple-600">
             Register
           </Link>
         </p>
 
-        <div className="mt-4 flex justify-end">
+        <div className="mt-6 flex justify-end">
           <button
             type="submit"
-            className="rounded-full bg-sky px-7 py-2 font-display font-semibold text-white shadow-md transition hover:brightness-95"
-            style={{ backgroundColor: "oklch(0.55 0.16 250)" }}
+            className="rounded-full bg-blue-500 px-8 py-2.5 font-display font-semibold text-white shadow-md transition hover:bg-blue-600"
           >
             Masuk
           </button>
