@@ -65,7 +65,7 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="flex items-center justify-between border-b border-primary/20 bg-background px-4 py-3 lg:hidden">
+      <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between border-b border-primary/20 bg-background px-4 py-3 lg:hidden">
         <BrandLogo />
         <button
           onClick={() => setOpen(true)}
