@@ -43,7 +43,7 @@ export function StatusDonut() {
         </ResponsiveContainer>
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
           <span className="font-display text-2xl font-bold text-foreground">
-            {dashboardStats.imunisasiLengkap}%
+            {donutData.find(d => d.name === "Normal")?.value}%
           </span>
           <span className="text-xs text-muted-foreground">Normal</span>
         </div>
