@@ -23,7 +23,8 @@ const menu = [
 ]
 
 function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
-  const pathname = usePathname()
+  // Guard against null pathname (can be null in some runtimes)
+  const pathname = usePathname() ?? ""
   return (
     <nav className="flex flex-col gap-1">
       {menu.map(({ href, label, icon: Icon }) => {
