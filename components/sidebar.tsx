@@ -34,14 +34,15 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
             key={href}
             href={href}
             onClick={onNavigate}
+            aria-current={active ? "page" : undefined}
             className={cn(
-              "flex items-center gap-3 rounded-2xl px-4 py-3 font-display text-base font-semibold transition",
+              "flex items-center gap-3 rounded-2xl px-4 py-3 font-display text-base font-semibold transition shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary",
               active
                 ? "bg-primary text-primary-foreground shadow-md"
-                : "text-primary hover:bg-primary/10",
+                : "text-primary hover:bg-primary/10 active:bg-primary/20",
             )}
           >
-            <Icon className="h-5 w-5" aria-hidden="true" />
+            <Icon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
             {label}
           </Link>
         )
@@ -50,9 +51,10 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
       <Link
         href="/login"
         onClick={onNavigate}
-        className="flex items-center gap-3 rounded-2xl px-4 py-3 font-display text-base font-semibold text-primary transition hover:bg-primary/10"
+        className="flex items-center gap-3 rounded-2xl px-4 py-3 font-display text-base font-semibold text-primary transition shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary hover:bg-primary/10 active:bg-primary/20"
+        aria-current={undefined}
       >
-        <LogOut className="h-5 w-5" aria-hidden="true" />
+        <LogOut className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
         Keluar
       </Link>
     </nav>
@@ -70,7 +72,7 @@ export function Sidebar() {
         <button
           onClick={() => setOpen(true)}
           aria-label="Buka menu"
-          className="rounded-xl bg-primary p-2 text-primary-foreground"
+          className="rounded-xl bg-primary p-2 text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -91,7 +93,7 @@ export function Sidebar() {
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Tutup menu"
-                className="rounded-lg p-1 text-primary"
+                className="rounded-lg p-1 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <X className="h-6 w-6" />
               </button>
